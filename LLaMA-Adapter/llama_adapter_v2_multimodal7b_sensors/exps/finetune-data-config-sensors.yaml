@@ -1,0 +1,6 @@
+META:
+  - '/home/heck2/bzr/nn_training_system/2023_task_files/sensorqa/llama_adapter_overall_sensorqa_dataset_train_gpt_shortened.json'
+#  - '/home/heck2/bzr/external_github_repos/LLaMA-Adapter/datasets/alpaca_gpt4_data.json'
+#  - '/home/heck2/bzr/external_github_repos/LLaMA-Adapter/datasets/alpaca_gpt4_data_zh.json'
+#  - '/home/heck2/bzr/external_github_repos/LLaMA-Adapter/datasets/llava_instruct_150k.json'
+#  - '/home/heck2/bzr/external_github_repos/LLaMA-Adapter/datasets/alpaca_data_zh_51k.json'
