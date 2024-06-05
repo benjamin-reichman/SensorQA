@@ -70,9 +70,10 @@ def find_text_between_tags(text, start_tag='[ANS]', end_tag='[/ANS]'):
 
 
 def train(args):
-    dataset = load_dataset("json", data_files=f"../../2023_task_files/sensorqa/overall_sensorqa_dataset_train.json", split="train")
+    dataset = load_dataset("json", data_files=f"overall_sensorqa_dataset_train_gpt_shortened.json", split="train")
 
     dataset = dataset.map(preprocess_function)
+    print(f"Dataset length: {len(dataset)}")
 
     peft_config = lora_setup()
 
@@ -105,7 +106,9 @@ def train(args):
         lr_scheduler_type="constant",
         # logging & evaluation strategies
         logging_dir=f'./logs/',
-        logging_strategy="epoch",
+        log_level="info",
+        logging_strategy="steps",
+        logging_steps=1,
         evaluation_strategy="no",
         # eval_steps=10,
         # eval_delay=3,
@@ -131,7 +134,7 @@ def train(args):
     response_template_with_context = " ### Answer:"
     response_template_ids = tokenizer.encode(response_template_with_context, add_special_tokens=False)[2:]  # Now we have it like in the dataset texts: `[2277, 29937, 4007, 22137, 29901]`
     data_collator = DataCollatorForCompletionOnlyLM(response_template_ids, tokenizer=tokenizer)
-
+    print(training_args)
     trainer = SFTTrainer(
         model=model,
         args=training_args,
@@ -157,16 +160,13 @@ def eval(args):
 
     split = args.split
 
-    eval_dataset = load_dataset("json", data_files=f"../../2023_task_files/sensorqa/overall_sensorqa_dataset_val.json", split="train")
+    eval_dataset = load_dataset("json", data_files=f"overall_sensorqa_dataset_val_gpt_shortened.json", split="train")
     eval_dataset = eval_dataset.map(preprocess_function_inference)
 
     # bpdb.set_trace()
     formatted_eval_dataset = formatting_prompts_func_inference(eval_dataset)
 
     if args.vllm:
-        from vllm import LLM, SamplingParams
-
-        from vllm.lora.request import LoRARequest
 
         # sampling_params = SamplingParams(
         #     temperature=0,

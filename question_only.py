@@ -22,7 +22,7 @@ tmodel = T5ForConditionalGeneration.from_pretrained("t5-base").cuda()
 datasets = {}
 dataloaders = {}
 for mode in ['train', 'val']:
-    datasets[mode] = SensorQADataset(f"../../2023_task_files/sensorqa/overall_sensorqa_dataset_{mode}.json", T5Tokenizer, ["t5-base"])
+    datasets[mode] = SensorQADataset(f"overall_sensorqa_dataset_{mode}_gpt_shortened.json", T5Tokenizer, ["t5-base"])
     dataloaders[mode] = torch.utils.data.DataLoader(datasets[mode], batch_size=32, shuffle=False, drop_last=False, num_workers=12, pin_memory=True, collate_fn=generic_padded_collator)
 
 hyperparameters = {
@@ -35,7 +35,7 @@ optimizer = AdamW(tmodel.parameters(), lr=hyperparameters["learning_rate"])
 num_epochs = 100
 for epoch in range(num_epochs+1):
     epoch_loss = 0
-    if epoch % 10 == 0:
+    if epoch % 5 == 0:
         model_loop(epoch, tmodel, dataloaders["val"])
     with tqdm(total=len(dataloaders["train"])) as pbar:
         for i, batch in enumerate(dataloaders["train"]):

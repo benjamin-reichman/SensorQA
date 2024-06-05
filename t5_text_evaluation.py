@@ -13,9 +13,10 @@ end = "[/ANS]"
 pattern_start = re.escape(start) + "(?=(.*))"
 pattern_end = f"(?=(.){re.escape(end)})"
 
-most_frequent_tokens = pkl.load(open("../../2023_task_files/sensorqa/most_frequent_tokens.pkl", "rb"))
+most_frequent_tokens = pkl.load(open("most_frequent_tokens.pkl", "rb"))
 print(most_frequent_tokens)
-for j in range(90, 101, 10):
+exact_match = 0
+for j in range(0, 11, 10):
     print(f"Epoch {j}")
     questions, answers, model_generations = json.load(open(f"sensorqa_training_outputs/question_only_training_results_epoch_{j}.json"))
 

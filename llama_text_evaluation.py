@@ -13,11 +13,11 @@ end = "[/ANS]"
 pattern_start = re.escape(start) + "(?=(.*))"
 pattern_end = f"(?=(.){re.escape(end)})"
 
-most_frequent_tokens = pkl.load(open("../../2023_task_files/sensorqa/most_frequent_tokens.pkl", "rb"))
+most_frequent_tokens = pkl.load(open("most_frequent_tokens.pkl", "rb"))
 print(most_frequent_tokens)
-questions, answers, model_generations = json.load(open(f"predictions/llama_7b_sensorqa_question_only.json", "r"))
-
-
+# questions, answers, model_generations = json.load(open(f"data/non_oracle_conversational_vsft-llava-1.5-7b-hf/checkpoint-565/model_predictions.json", "r"))
+questions, answers, model_generations = json.load(open(f"predictions/no_sensorqa_finetune_outputs_checkpoint-3_results.json", "r"))
+# model_generations = [j for i in model_generations for j in i]
 
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
 

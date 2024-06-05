@@ -5,6 +5,7 @@ from torch.utils.data import Dataset, Sampler
 from torch import max as tmax
 from torch import Tensor, tensor, stack
 from torch.nn import functional as F
+import random
 
 
 class SensorQADataset(Dataset):
@@ -33,7 +34,7 @@ class SensorQADataset(Dataset):
 
     def __getitem__(self, idx):
         question = self.questions[idx]
-        answer = self.answers[idx]
+        answer = random.choice(self.answers[idx])
         question = self.tokenizer(question, return_tensors="pt", is_split_into_words=False, truncation=False, padding="longest")
         answer = self.tokenizer(answer, return_tensors="pt", is_split_into_words=False, truncation=False, padding="longest")
         return {
@@ -59,5 +60,5 @@ def generic_padded_collator(batch):
 
 if __name__ == "__main__":
     from transformers import T5Tokenizer
-    sensorqa_dataset = SensorQADataset("../../2023_task_files/sensorqa/overall_sensorqa_dataset.json", T5Tokenizer, ["t5-base"])
+    sensorqa_dataset = SensorQADataset("overall_sensorqa_dataset.json", T5Tokenizer, ["t5-base"])
     import IPython; IPython.embed()
