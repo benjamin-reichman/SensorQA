@@ -1,0 +1,288 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@type": "Dataset",
+  "name": "SensorQA",
+  "description": "This dataset is a set of questions and answers over the sensor data found in the ExtraSensory data. This distribution releases the question answers, the oracle Gantt Chart over the ground-truth activity labels from the ExtraSensory dataset, and the non-oracle graphs we generated for the baselines.",
+  "url": "https://anonymous.4open.science/r/SensorQA-373E/readme.md",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/deed.en",
+  "dct:conformsTo": "http://mlcommons.org/croissant/1.0",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "overall_sensorqa_dataset_train.json",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/overall_sensorqa_dataset_train.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "overall_sensorqa_dataset_train_em.json",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/overall_sensorqa_dataset_train_em.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "overall_sensorqa_dataset_val.json",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/overall_sensorqa_dataset_val.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "overall_sensorqa_dataset_val_em.json",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/overall_sensorqa_dataset_val_em.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "oracle_graphs_archive",
+      "contentUrl": "https://example.com/dataset/training_images.zip",
+      "encodingFormat": "application/zip"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "oracle_graphs",
+      "containedIn": "oracle_graphs_archive",
+      "encodingFormat": "image/png",
+      "includes": "*.png"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "non_oracle_graphs_archive",
+      "contentUrl": "https://example.com/dataset/testing_images.zip",
+      "encodingFormat": "application/zip"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "non_oracle_graphs",
+      "containedIn": "non_oracle_graphs_archive",
+      "encodingFormat": "image/png",
+      "includes": "*.png"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "overall_sensorqa_dataset_train_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/images",
+          "description": "Link to the image associated with the question. There are two images per question. The first image path is to the image of the oracle graph that uses the ground truth activity labels. The second image path is to the image of the non-oracle graph generated from the predictions of an activity prediction model.",
+          "dataType": "sc:URL",
+          "repeated": true,
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].images"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/question",
+          "description": "The text of the question.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/user",
+          "description": "The user id from the ExtraSensory dataset that the question corresponds to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].user"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/answer",
+          "description": "The answer(s) to the question, which could be a single string or a list of strings.",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].answer"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "overall_sensorqa_dataset_val_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/images",
+          "description": "Link to the image associated with the question. There are two images per question. The first image path is to the image of the oracle graph that uses the ground truth activity labels. The second image path is to the image of the non-oracle graph generated from the predictions of an activity prediction model.",
+          "dataType": "sc:URL",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val",
+            "extract": {
+              "jsonPath": "$[*].images"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/question",
+          "description": "The text of the question.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val",
+            "extract": {
+              "jsonPath": "$[*].question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/user",
+          "description": "The user id from the ExtraSensory dataset that the question corresponds to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].user"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/answer",
+          "description": "The answer(s) to the question, which could be a single string or a list of strings.",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val",
+            "extract": {
+              "jsonPath": "$[*].answer"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "overall_sensorqa_dataset_train_em_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/images",
+          "description": "Link to the image associated with the question. There are two images per question. The first image path is to the image of the oracle graph that uses the ground truth activity labels. The second image path is to the image of the non-oracle graph generated from the predictions of an activity prediction model.",
+          "dataType": "sc:URL",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train_em",
+            "extract": {
+              "jsonPath": "$[*].images"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/question",
+          "description": "The text of the question.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train_em",
+            "extract": {
+              "jsonPath": "$[*].question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/user",
+          "description": "The user id from the ExtraSensory dataset that the question corresponds to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].user"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/answer",
+          "description": "The answer(s) to the question, which could be a single string or a list of strings.",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train_em",
+            "extract": {
+              "jsonPath": "$[*].answer"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "overall_sensorqa_dataset_val_em",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/images",
+          "description": "Link to the image associated with the question. There are two images per question. The first image path is to the image of the oracle graph that uses the ground truth activity labels. The second image path is to the image of the non-oracle graph generated from the predictions of an activity prediction model.",
+          "dataType": "sc:URL",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val_em",
+            "extract": {
+              "jsonPath": "$[*].images"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/question",
+          "description": "The text of the question.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val_em",
+            "extract": {
+              "jsonPath": "$[*].question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/user",
+          "description": "The user id from the ExtraSensory dataset that the question corresponds to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_train",
+            "extract": {
+              "jsonPath": "$[*].user"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "SensorQA/answer",
+          "description": "The answer(s) to the question, which could be a single string or a list of strings.",
+          "dataType": "sc:Text",
+          "repeated": true,
+          "source": {
+            "fileObject": "overall_sensorqa_dataset_val_em",
+            "extract": {
+              "jsonPath": "$[*].answer"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
