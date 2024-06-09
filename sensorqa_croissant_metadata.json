@@ -37,29 +37,17 @@
     },
     {
       "@type": "cr:FileObject",
-      "@id": "oracle_graphs_archive",
-      "contentUrl": "https://example.com/dataset/training_images.zip",
-      "encodingFormat": "application/zip"
-    },
-    {
-      "@type": "cr:FileSet",
-      "@id": "oracle_graphs",
-      "containedIn": "oracle_graphs_archive",
-      "encodingFormat": "image/png",
-      "includes": "*.png"
+      "@id": "oracle_graphs_directory",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/oracle_graphs",
+      "description": "Directory containing all oracle graphs as individual PNG files.",
+      "encodingFormat": "text/html"
     },
     {
       "@type": "cr:FileObject",
-      "@id": "non_oracle_graphs_archive",
-      "contentUrl": "https://example.com/dataset/testing_images.zip",
-      "encodingFormat": "application/zip"
-    },
-    {
-      "@type": "cr:FileSet",
-      "@id": "non_oracle_graphs",
-      "containedIn": "non_oracle_graphs_archive",
-      "encodingFormat": "image/png",
-      "includes": "*.png"
+      "@id": "oracle_graphs_directory",
+      "contentUrl": "https://anonymous.4open.science/r/SensorQA-373E/non_oracle_graphs",
+      "description": "Directory containing all non oracle graphs as individual PNG files.",
+      "encodingFormat": "text/html"
     }
   ],
   "recordSet": [
