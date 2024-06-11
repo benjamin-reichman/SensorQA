@@ -281,8 +281,7 @@ To reproduce the Llava-1.5-LORA results:
 
 Most of these parameters are hard-coded in the code itself, so if you want to change them, change them there.
 
-To reproduce the Llama-7B-Adapter S+L handcrafted feature results, you will first need to download the handcrafted features from: http://extrasensory.ucsd.edu/
-<span style="color:blue"><strong>Xiaofan please edit here to the exact link on the extrasensory website where they can find the handcrafted features.</strong></span>
+To reproduce the Llama-7B-Adapter S+L handcrafted feature results, you will first need to download the handcrafted features from: http://extrasensory.ucsd.edu/data/primary_data_files/ExtraSensory.per_uuid_features_labels.zip
 
 Then to train the Llama-7B-Adapter S+L we first need to install a custom version of timm (included in this repository). This custom version allows for attention-masks in vision models. This helps mask the padding needed when processing sensor features.
 
@@ -298,9 +297,12 @@ Then to train:
     python llama_adapter_sensors_val_loop.py
     python llama_text_evaluation.py
 
+For the Llama-7B-Adapter S+L with CLIP features, we start with the raw time series data of ExtraSensory (Accelerometer, Gyroscope, Magnetometer, Watch Accelerator and Audio MFCC features), which can be downloaded from their official website, such as http://extrasensory.ucsd.edu/data/raw_measurements/ExtraSensory.raw_measurements.raw_acc.zip. To train:
 
-To train the Llama-7B-Adapter S+L with CLIP features...
-<span style="color:blue"><strong>Xiaofan please edit here on the process of creating the CLIP features</strong></span>
+```bash
+cd clip_training
+./run.sh
+```
 
 Then once you have the CLIP features:
 
@@ -309,6 +311,10 @@ Then once you have the CLIP features:
     python llama_adapter_sensors_val_loop.py
     python llama_text_evaluation.py
 
+For the DeepSQA model, we adapt our code from the [DeepSQA repo](https://github.com/nesl/DeepSQA). To train:
 
-To train the DeepSQA model...
-<span style="color:blue"><strong>Xiaofan please edit here on the process of training and evaluating the DeepSQA model.</strong></span>
+```bash
+cd DeepSQA
+python3 deepsqa_ca.py --gpt_shortened
+```
+
