@@ -13,12 +13,14 @@ To Download the annotation files:
     git clone https://github.com/benjamin-reichman/SensorQA/
 
 The annotation files can be found in:
+
     SensorQA/overall_sensorqa_dataset_train.json
     SensorQA/overall_sensorqa_dataset_train_em.json
     SensorQA/overall_sensorqa_dataset_val.json
     SensorQA/overall_sensorqa_dataset_val_em.json
 
 The graphical visualizations of the sensor readings can be found in:
+
     SensorQA/non_oracle_graphs
     SensorQA/oracle_graphs
 
