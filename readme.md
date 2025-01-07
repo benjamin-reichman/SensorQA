@@ -10,7 +10,17 @@ The SensorQA Dataset is a dataset designed to train models to be able to underst
 
 To Download the annotation files:
     
-    git clone https://github.com/[]/SensorQA/
+    git clone https://github.com/benjamin-reichman/SensorQA/
+
+The annotation files can be found in:
+    SensorQA/overall_sensorqa_dataset_train.json
+    SensorQA/overall_sensorqa_dataset_train_em.json
+    SensorQA/overall_sensorqa_dataset_val.json
+    SensorQA/overall_sensorqa_dataset_val_em.json
+
+The graphical visualizations of the sensor readings can be found in:
+    SensorQA/non_oracle_graphs
+    SensorQA/oracle_graphs
 
 Our dataset uses the sensor reading and features from the Extrasensory dataset. They can be found here: http://extrasensory.ucsd.edu/
 
