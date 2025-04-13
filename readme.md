@@ -1,4 +1,4 @@
-# SensorQA: LLMs Meets Wearable Device Data \[[Paper]()]
+# SensorQA: LLMs Meets Wearable Device Data \[SenSys'25, [Paper](https://arxiv.org/abs/2501.04974)]
 ***
 
 ![image](dataset_example.PNG)
@@ -24,7 +24,7 @@ The graphical visualizations of the sensor readings can be found in:
     SensorQA/non_oracle_graphs
     SensorQA/oracle_graphs
 
-Our dataset uses the sensor reading and features from the Extrasensory dataset. They can be found here: http://extrasensory.ucsd.edu/
+Our dataset uses the sensor reading and features from the Extrasensory dataset. They can be found here: http://extrasensory.ucsd.edu/. ExtraSensory contains sensor measurements from 60 users, where each user is assigned with a unique uuid. The matching between uuid and the user id in SensorQA graphs (from 0 to 59) can be found in `es_user_id.py`.
 
 
 # Reproducing Baselines
