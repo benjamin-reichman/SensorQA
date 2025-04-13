@@ -1,4 +1,4 @@
-# SensorQA: LLMs Meets Wearable Device Data \[SenSys'25, [Paper](https://arxiv.org/abs/2501.04974)]
+# [SenSys’25] SensorQA: A Question Answering Benchmark for Daily-Life Monitoring \[[Paper](https://arxiv.org/abs/2501.04974)]
 ***
 
 ![image](dataset_example.PNG)
